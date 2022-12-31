@@ -23,12 +23,12 @@ export class AdminMenuUserManager {
         let inputId;
         let inputName;
         let inputPassword;
-        let isLoopAdminMenu = true;
-        while (isLoopAdminMenu) {
+        let no = -1;
+        
             switch (choice) {
                 case 1:
                     console.table(this.userManager.showList());
-                    return this.adminMenuUserManager;
+                    this.adminMenuUserManager();
                 
                 case 2:
                     let idValidate = new IdValidate();
@@ -55,46 +55,48 @@ export class AdminMenuUserManager {
                             let newUser = new User(inputId, inputName, inputPassword);
                             this.userManager.addUser(newUser);
                             console.log('!!! Add new user successful !!!');
-                            return this.adminMenuUserManager;
+                            this.adminMenuUserManager();
                         } else {
                             console.log('!!! Wrong type of password. Please try again');
                             continue;
                         }
                     }
-                     return this.adminMenuUserManager;
-                case 3:
+                     this.adminMenuUserManager();
+                     break
+                case 3: // chưa validate new pass chưa validate new pass chưa validate new pass chưa validate new pass
                     inputId = readlineSync.question('ID: ');
                     let isIdAvailable = this.userManager.findById(inputId);
-                    let no = -1;
+                    
                     if (isIdAvailable == no) {
                         console.log('!!! This ID is unavailable. Please try again !!!');
-                        return this.adminMenuUserManager;
+                        this.adminMenuUserManager();
                     } else {
                         inputName = readlineSync.question('Name: ');
                         inputPassword = readlineSync.question('Password: ');
                         let updateUser = new User(inputId, inputName, inputPassword);
                         this.userManager.editUser(inputId, updateUser)
                         console.log('!!! Edit successful !!!');
-                        return this.adminMenuUserManager;
+                        this.adminMenuUserManager();
                     }
                     break;
                 case 4:
                     inputId = readlineSync.question('ID: ');
                     let isIdExist = this.userManager.findById(inputId);
-                    no = -1;
+                   
                     if (isIdExist == no) {
                         console.log('!!! This ID is not exist. Please try again !!!');
-                        return this.adminMenuUserManager;
+                        this.adminMenuUserManager();
                     } else {
                         this.userManager.removeUser(inputId);
                         console.log('!!! Remove successful !!!');
-                        return this.adminMenuUserManager;
+                        this.adminMenuUserManager();
                     }
+                    break;
                 case 5:
                     return back.adminMenu;
               
             }
-        }
+        
 
     }
 }

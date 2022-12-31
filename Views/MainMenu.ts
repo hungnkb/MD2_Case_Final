@@ -21,7 +21,6 @@ export class MainMenu {
             while (isLoop) {
                 console.log(this.menu);
                 choice = +readlineSync.question("Enter your choice: ");
-                console.log(choice);
                 
                 let inputId;
                 let inputPassword;
