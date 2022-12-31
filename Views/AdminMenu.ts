@@ -1,37 +1,40 @@
 var readlineSync = require('readline-sync');
 import { UserManager } from "../Controller/UserManager";
-import { LoginSignUp } from "./LoginSignup";
-const fs = require('fs')
+import { MainMenu } from "./MainMenu";
+import { AdminMenuUserManager } from "./AdminMenuUserManager";
+import { AdminMenuSupplyManager } from "./AdminMenuSupplyManager"
 
 export class AdminMenu {
 
-    userManager: UserManager = new UserManager();
+    userManager = new UserManager();
+    adminMenuUserManager = new AdminMenuUserManager();
+    adminMenuSupplyManager = new AdminMenuSupplyManager();
     menu: string = `
+    ----------* Administrator Menu *----------
     1. User Manager
     2. Supply Manager
-    3. Exit
+    3. Logout
     `
 
     adminMenu() {
-        console.log(this.menu)
-        while (true) {
-            let choice = +readlineSync.question('Pick your choice: ');
-            switch (choice) {
-                case 1:
-                    this.userManager.showList()
-                case 2:
-                    let inputID = readlineSync.question('ID: ');
-                    let inputPassword = readlineSync.question('Password: ');
-                    let inputName = readlineSync.question('Name: ');
-                    this.userManager.addUser(inputID, inputPassword, inputName);
-                case 3:
-                    inputID = readlineSync.question('ID: ');
-
-
-                case 4:
-
-                case 5:
+        let logout = new MainMenu();
+        
+    
+            while (true) {
+                console.log(this.menu);
+                let choice = +readlineSync.question('Pick your choice: ');
+                switch (choice) {
+                    case 1:
+                        this.adminMenuUserManager.adminMenuUserManager();
+                        break;
+                    case 2:
+                        this.adminMenuSupplyManager.adminMenuSupplyManager();
+                        break;
+                    case 3:
+                        return logout.mainMenu   
+                }
             }
-        }
+       
+        
     }
 }

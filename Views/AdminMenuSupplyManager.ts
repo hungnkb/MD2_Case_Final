@@ -1,5 +1,6 @@
 var readlineSync = require('readline-sync');
 import { SupplyManager } from "../Controller/SupplyManager";
+import { Supplies } from "../Models/Supplies";
 
 export class AdminMenuSupplyManager {
 
@@ -17,6 +18,7 @@ export class AdminMenuSupplyManager {
         let inCorrectChoice;
         let correctChoice;
         do {
+            console.log(this.menu)
             choice = +readlineSync.question("Enter your choice");
             inCorrectChoice = choice <= 0 || choice >= 4;
             correctChoice = choice >= 1 || choice <= 3;
@@ -32,10 +34,10 @@ export class AdminMenuSupplyManager {
             case 2:
                 let inputId = readlineSync.question('Id: ');
                 let inputName = readlineSync.question('Name: ');
-                let inputPrice = readlineSync.question('Price: ');
-                let inputQuantity = readlineSync.question('Quantity: ');
-                
-                supplyManager.addItem();
+                let inputPrice = +readlineSync.question('Price: ');
+                let inputQuantity = +readlineSync.question('Quantity: ');
+                let newSupply = new Supplies(inputId, inputName, inputPrice, inputQuantity);
+                supplyManager.addItem(inputId, newSupply);
                 break;
             case 3:
             case 4:

@@ -5,31 +5,32 @@ export class UserManager {
     role: number = 1;
     userList: User[] = [];
 
+    constructor() {
+        this.userList.push(new User('hung', 'Hung', '123', 0))
+        this.userList.push(new User('hung2', 'Hung2', '123'))
+        this.userList.push(new User('hung3', 'Hung3', '123'))
+        this.userList.push(new User('hung4', 'Hung4', '123'))
+        this.userList.push(new User('hung5', 'Hung5', '123'))
+    }
+
     showList() {
         return this.userList;
     }
 
-    addUser(id: string, name: string, newUser: User) {
-        let index = this.findById(id)
-        if (index == -1) {
-            this.userList.push(newUser)
-        } else {
-            return 'This ID is unvailable. Please try again'
-        }
+    addUser(newUser: User) {
+        this.userList.push(newUser)
     }
 
     editUser(id: string, updateUser: User) {
         let index = this.findById(id)
         if (index != -1) {
             this.userList[index] = updateUser;
-        } else {
-            return 'This user is not exist. Please try again'
         }
     }
 
     removeUser(id: string) {
         let index = this.findById(id)
-        if(index != -1) {
+        if (index != -1) {
             this.userList.splice(index, 1)
         } else {
             return 'This user is not exist. Please try again'
@@ -39,21 +40,21 @@ export class UserManager {
     findById(id: string) {
         for (let i in this.userList) {
             if (id == this.userList[i].getId()) {
-                return +i
+                return +i;
             }
         }
         return -1;
     }
 
-    checkLogin(password: string, id: string) {
+    checkLogin(id: string, password: string) {
         let checkId = this.findById(id);
         if (checkId != -1) {
             for (let i in this.userList[checkId]) {
                 if (password == this.userList[checkId].getPassword()) {
-                    return
+                    return +i;
                 }
-            } return -1;
-        }
+            }
+        } return -1;
     }
 
     checkAdmin(user: User) {

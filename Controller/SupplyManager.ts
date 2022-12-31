@@ -1,6 +1,6 @@
 import { Supplies } from "../Models/Supplies";
 
-export class SupplyManager<T> {
+export class SupplyManager {
     private supplyList: Supplies[] = [];
 
     constructor() {
@@ -53,7 +53,7 @@ export class SupplyManager<T> {
     }
 
     checkQuantity(id: string) {
-        this.findById()
+        this.findById(id)
         for (let i in this.supplyList) {
 
         }

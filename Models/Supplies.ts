@@ -29,12 +29,12 @@ export class Supplies implements iSupplies {
         return this.quantity;
     }
 
-    setId(id): void {
+    setId(id: string): void {
         this.id = id;
     }
 
-    setName(name): void {
-        this.getName = name;
+    setName(name: string): void {
+        this.name = name;
     }
 
     setPrice(price: number): void {

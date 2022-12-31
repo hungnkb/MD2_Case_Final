@@ -10,7 +10,7 @@ export class User implements iUser {
         this.id = id;
         this.name = name;
         this.password = password;
-        this.role = 1;
+        this.role = role;
     }
 
     getId() {
@@ -20,6 +20,9 @@ export class User implements iUser {
         return this.name;
     }
     getPassword() {
-        return this.password
+        return this.password;
+    }
+    getRole() {
+        return this.role;
     }
 }
