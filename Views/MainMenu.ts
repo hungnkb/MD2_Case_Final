@@ -1,5 +1,5 @@
 var readlineSync = require('readline-sync');
-import { UserManager } from "../Controller/UserManager";
+import { UserManager } from "../Controller/AdminManager";
 import { User } from "../Models/User";
 import { AdminMenu } from "./AdminMenu";
 import { AdminMenuUserManager } from "./AdminMenuUserManager";
@@ -35,10 +35,10 @@ export class MainMenu {
                             inputPassword = readlineSync.question('Password: ');
                             let checkLogin = this.userManager.checkLogin(inputId, inputPassword);
                             if (checkLogin == -1) {
-                                console.log('This ID is unavailable. Please try again');
+                                console.log('!!! This ID is unavailable. Please try again');
     
                             } else {
-                                console.log('Login successful')
+                                console.log('!!! Login successful')
                                 isLoop1 = false;
                             }
                         }

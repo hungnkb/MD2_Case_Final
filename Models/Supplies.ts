@@ -6,7 +6,7 @@ export class Supplies implements iSupplies {
     price: number;
     quantity: number;
 
-    constructor(id: string, name: string, price: number, quantity: number) {
+    constructor(id: string, name: string, price: number, quantity = 1) {
         this.id = id;
         this.name = name;
         this.price = price;

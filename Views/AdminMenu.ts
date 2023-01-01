@@ -1,5 +1,5 @@
 var readlineSync = require('readline-sync');
-import { UserManager } from "../Controller/UserManager";
+import { UserManager } from "../Controller/AdminManager";
 import { MainMenu } from "./MainMenu";
 import { AdminMenuUserManager } from "./AdminMenuUserManager";
 import { AdminMenuSupplyManager } from "./AdminMenuSupplyManager"
