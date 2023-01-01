@@ -1,6 +1,6 @@
 var readlineSync = require('readline-sync');
 import { IdValidate, PasswordValidate } from "../Controller/AccountValidate";
-import { UserManager } from "../Controller/AdminManager";
+import { AdminManager } from "../Controller/AdminManager";
 import { User } from "../Models/User";
 import { AdminMenu } from "./AdminMenu";
 
@@ -14,7 +14,7 @@ export class AdminMenuUserManager {
     4. Remove user
     5. Back
     `
-    userManager = new UserManager();
+    userManager = new AdminManager();
 
     adminMenuUserManager() {
         let back = new AdminMenu();
@@ -33,6 +33,7 @@ export class AdminMenuUserManager {
             case 1:
                 console.table(this.userManager.showList());
                 this.adminMenuUserManager();
+                break;
 
             case 2:
 

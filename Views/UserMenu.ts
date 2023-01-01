@@ -38,15 +38,16 @@ export class UserMenu {
                     break;
                 case 2:
                     let inputId = readlineSync.question('Id item: ');
-                    while (true) {
+                    let isLoop = true;
+                    while (isLoop) {
                         isIdExistSupply = indexSupply = this.supplyManager.findById(inputId);
                         isIdExistCart = indexCart = this.userCart.findById(inputId);
                         if (isIdExistSupply == no) {
                             console.log('!!! This item is not exist. Please try again');
                             break;
                         } else {
-                            let isLoop = true;
-                            while (isLoop) {
+                            let isLoop2 = true;
+                            while (isLoop2) {
                                 inputQuantity = +readlineSync.question('Quantity: ');
                                 if (isIdExistCart == no) {
 
@@ -60,18 +61,18 @@ export class UserMenu {
                                         this.userCart.addItem(newItem);
                                         this.supplyManager.supplyList[indexSupply].quantity = this.supplyManager.supplyList[indexSupply].quantity - inputQuantity;
                                         console.log('!!! Add item to cart successful');
-                                        this.userMenu();
-                                        break;
+                                        isLoop2 = false;
                                     }
                                 }
                                 else {
                                     this.userCart.itemList[indexCart].quantity = this.userCart.itemList[indexCart].quantity + inputQuantity;
                                     this.supplyManager.supplyList[indexSupply].quantity = this.supplyManager.supplyList[indexSupply].quantity - inputQuantity;
                                     console.log('!!! Add item to cart successful');
-                                    this.userMenu();
-                                    break;
+                                    isLoop2 = false;
+
                                 }
                             }
+                            isLoop = false;
                         }
                     }
                     break;
@@ -79,7 +80,8 @@ export class UserMenu {
                     console.table(this.userCart.showList());
                     break;
                 case 4:
-                    while (true) {
+                    let isLoop3 = true;
+                    while (isLoop3) {
                         let inputId = readlineSync.question('Id: ');
                         let index = this.userCart.findById(inputId);
 
@@ -92,13 +94,11 @@ export class UserMenu {
                             if (inputQuantity >= this.userCart.itemList[index].quantity) {
                                 this.userCart.itemList[index].quantity = 0;
                                 console.log('!!! Edit cart successful');
-                                this.userMenu();
-                                break;
+                                isLoop3 = false;
                             } else {
                                 this.userCart.itemList[index].quantity = this.userCart.itemList[index].quantity - inputQuantity;
                                 console.log('!!! Edit cart successful');
-                                this.userMenu();
-                                break;
+                                isLoop3 = false;
                             }
                         }
                     }

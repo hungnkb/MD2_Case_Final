@@ -1,6 +1,6 @@
 import { User } from "../Models/User";
 
-export class UserManager {
+export class AdminManager {
 
     role: number = 1;
     userList: User[] = [];
