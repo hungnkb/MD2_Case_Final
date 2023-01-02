@@ -55,16 +55,13 @@ export class UserMenu {
                                         console.log('!!! Storage is not enough. Please try again');
                                         break;
                                     } else {
-                                        let newItem = new Supplies(inputId, this.supplyManager.supplyList[indexSupply].name, this.supplyManager.supplyList[indexSupply].price, inputQuantity)
-                                        this.userCart.addItem(newItem);
-                                        this.supplyManager.supplyList[indexSupply].quantity = this.supplyManager.supplyList[indexSupply].quantity - inputQuantity;
+                                        this.addItemNoExistCart(inputId, inputQuantity, indexSupply);
                                         console.log('!!! Add item to cart successful');
                                         isLoop2 = false;
                                     }
                                 }
                                 else {
-                                    this.userCart.itemList[indexCart].quantity = this.userCart.itemList[indexCart].quantity + inputQuantity;
-                                    this.supplyManager.supplyList[indexSupply].quantity = this.supplyManager.supplyList[indexSupply].quantity - inputQuantity;
+                                    this.addItemExistCart(indexCart, inputQuantity, indexSupply);
                                     console.log('!!! Add item to cart successful');
                                     isLoop2 = false;
                                 }
@@ -88,12 +85,14 @@ export class UserMenu {
                             break;
                         } else {
                             let inputQuantity = +readlineSync.question('Quantity: ');
-                            if (inputQuantity >= this.userCart.itemList[index].quantity) {
+                            let removeItemInCart = inputQuantity >= this.userCart.itemList[index].quantity;
+                            let itemInCartQuantity = this.userCart.itemList[index].quantity;
+                            if (removeItemInCart) {
                                 this.userCart.itemList[index].quantity = 0;
                                 console.log('!!! Edit cart successful');
                                 isLoop3 = false;
                             } else {
-                                this.userCart.itemList[index].quantity = this.userCart.itemList[index].quantity - inputQuantity;
+                                this.userCart.itemList[index].quantity = itemInCartQuantity - inputQuantity;
                                 console.log('!!! Edit cart successful');
                                 isLoop3 = false;
                             }
@@ -108,7 +107,16 @@ export class UserMenu {
                     return this.logout.mainMenu;
             }
         }
+    }
 
+    addItemExistCart(indexCart: number, inputQuantity: number, indexSupply: number) {
+        this.userCart.itemList[indexCart].quantity = this.userCart.itemList[indexCart].quantity + inputQuantity;
+        this.supplyManager.supplyList[indexSupply].quantity = this.supplyManager.supplyList[indexSupply].quantity - inputQuantity;
+    }
 
+    addItemNoExistCart(inputId: string, inputQuantity: number, indexSupply: number) {
+        let newItem = new Supplies(inputId, this.supplyManager.supplyList[indexSupply].name, this.supplyManager.supplyList[indexSupply].price, inputQuantity)
+        this.userCart.addItem(newItem);
+        this.supplyManager.supplyList[indexSupply].quantity = this.supplyManager.supplyList[indexSupply].quantity - inputQuantity;
     }
 }
