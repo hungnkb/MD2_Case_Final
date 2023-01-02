@@ -1,11 +1,11 @@
 var readlineSync = require('readline-sync');
+
 import { AdminManager } from "../Controller/AdminManager";
 import { AdminMenu } from "./AdminMenu";
 import { Signup } from "./SignUp";
 import { UserMenu } from "./UserMenu";
 
 export class MainMenu {
-    adminManager = new AdminManager();
     ;
     menu = `
     ----------* Welcome to AGE-30 store *----------
@@ -31,7 +31,7 @@ export class MainMenu {
                     while (isLoop1) {
                         inputId = readlineSync.question('ID: ');
                         inputPassword = readlineSync.question('Password: ');
-                        let checkLogin = this.adminManager.checkLogin(inputId, inputPassword);
+                        let checkLogin = AdminManager.checkLogin(inputId, inputPassword);
                         let idUnavailable = -1;
                         if (checkLogin == idUnavailable) {
                             console.log('!!! This ID is unavailable. Please try again');
@@ -42,9 +42,9 @@ export class MainMenu {
                         }
                     }
 
-                    let indexOfId = this.adminManager.findById(inputId);
+                    let indexOfId = AdminManager.findById(inputId);
                     let _user = 1;
-                    let checkRole = this.adminManager.userList[indexOfId].getRole()
+                    let checkRole = AdminManager.userList[indexOfId].getRole()
                     if (checkRole == _user) {
                         userMenu.userMenu();
                     } else {
@@ -54,7 +54,7 @@ export class MainMenu {
                 case 2:
                     let signup = new Signup();
                     let newUser = signup.signup();
-                    this.adminManager.addUser(newUser);
+                    AdminManager.addUser(newUser);
                     break;
                 case 3:
                     return false;

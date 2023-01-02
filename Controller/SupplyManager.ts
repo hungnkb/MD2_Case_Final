@@ -1,59 +1,59 @@
 import { Supplies } from "../Models/Supplies";
 
 export class SupplyManager {
-    supplyList: Supplies[] = [];
+    static supplyList: Supplies[] = [];
 
     constructor() {
-        this.supplyList.push(new Supplies('S001', 'Snack 001', 0.5, 1000));
-        this.supplyList.push(new Supplies('S002', 'Snack 002', 0.3, 1000));
-        this.supplyList.push(new Supplies('S003', 'Snack 003', 0.1, 1000));
-        this.supplyList.push(new Supplies('B001', 'Beer 001', 0.8, 1000));
-        this.supplyList.push(new Supplies('B002', 'Beer 002', 1, 1000));
-        this.supplyList.push(new Supplies('B003', 'Beer 003', 1.2, 1000));
+        SupplyManager.supplyList.push(new Supplies('S001', 'Snack 001', 0.5, 1000));
+        SupplyManager.supplyList.push(new Supplies('S002', 'Snack 002', 0.3, 1000));
+        SupplyManager.supplyList.push(new Supplies('S003', 'Snack 003', 0.1, 1000));
+        SupplyManager.supplyList.push(new Supplies('B001', 'Beer 001', 0.8, 1000));
+        SupplyManager.supplyList.push(new Supplies('B002', 'Beer 002', 1, 1000));
+        SupplyManager.supplyList.push(new Supplies('B003', 'Beer 003', 1.2, 1000));
     }
 
-    showList(): Supplies[] {
-        return this.supplyList;
+    static showList(): Supplies[] {
+        return SupplyManager.supplyList;
     }
 
-    addItem(newItem: Supplies): void {
-        this.supplyList.push(newItem);
+    static addItem(newItem: Supplies): void {
+        SupplyManager.supplyList.push(newItem);
     }
 
-    editItem(id: string, updateItem: Supplies): void {
+    static editItem(id: string, updateItem: Supplies): void {
         let index = this.findById(id)
         if (index != -1) {
-            this.supplyList[index] = updateItem;
+            SupplyManager.supplyList[index] = updateItem;
         } 
     }
 
-    editQuantity(id: string, quantity: number) {
+    static editQuantity(id: string, quantity: number) {
         let index = this.findById(id);
-        this.supplyList[index].quantity -= quantity;
+        SupplyManager.supplyList[index].quantity -= quantity;
     }
 
-    removeItem(id: string): void {
+    static removeItem(id: string): void {
         let index = this.findById(id)
         if (index != -1) {
-            this.supplyList.splice(index, 1)
+            SupplyManager.supplyList.splice(index, 1)
         }
     }
 
-    findById(id: string): number {
-        for (let i in this.supplyList) {
-            if (id == this.supplyList[i].getId()) {
+    static findById(id: string): number {
+        for (let i in SupplyManager.supplyList) {
+            if (id == SupplyManager.supplyList[i].getId()) {
                 return +i;
             }
         }
         return -1;
     }
 
-    checkQuantity(id: string): number | any {
+    static checkQuantity(id: string): number | any {
         this.findById(id)
         let quantity = 0;
-        for (let i in this.supplyList) {
-            if (this.supplyList[i].quantity > 0) {
-                return quantity += this.supplyList[i].quantity;
+        for (let i in SupplyManager.supplyList) {
+            if (SupplyManager.supplyList[i].quantity > 0) {
+                return quantity += SupplyManager.supplyList[i].quantity;
             }
             return -1;
         }

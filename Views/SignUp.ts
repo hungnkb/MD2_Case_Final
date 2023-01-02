@@ -7,7 +7,6 @@ var readlineSync = require('readline-sync');
 export class Signup {
     idValidate = new IdValidate();
     passwordValidate = new PasswordValidate();
-    adminManager = new AdminManager();
     back = new MainMenu()
 
 
@@ -20,7 +19,7 @@ export class Signup {
             inputId = readlineSync.question('Id: ');
             if (this.idValidate.validate(inputId)) {
                 let yes = -1;
-                let isIdAvailable = this.adminManager.findById(inputId);
+                let isIdAvailable = AdminManager.findById(inputId);
                 if (isIdAvailable == yes) {
                     isLoop = false;
                 } else {

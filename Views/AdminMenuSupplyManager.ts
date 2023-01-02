@@ -14,7 +14,6 @@ export class AdminMenuSupplyManager {
     `
 
     adminMenuSupplyManager() {
-        let supplyManager = new SupplyManager();
         let inCorrectChoice: any;
         let correctChoice: any;
         let back = new AdminMenu();
@@ -35,18 +34,18 @@ export class AdminMenuSupplyManager {
             } else {
                 switch (choice) {
                     case 1:
-                        console.table(supplyManager.showList());
+                        console.table(SupplyManager.showList());
                         break;
                     case 2:
                         inputId = readlineSync.question('Id: ');
-                        isIdAvailable = supplyManager.findById(inputId);
+                        isIdAvailable = SupplyManager.findById(inputId);
                         let yes = -1;
                         if (isIdAvailable == yes) {
                             inputName = readlineSync.question('Name: ');
                             inputPrice = +readlineSync.question('Price: ');
                             inputQuantity = +readlineSync.question('Quantity: ');
                             let newSupply = new Supplies(inputId, inputName, inputPrice, inputQuantity);
-                            supplyManager.addItem(newSupply);
+                            SupplyManager.addItem(newSupply);
                             console.log('!!! Add item successful');
                         } else {
                             console.log('!!! This item is unavailable. Please try again');
@@ -56,7 +55,7 @@ export class AdminMenuSupplyManager {
                     case 3:
                         inputId = readlineSync.question('ID: ');
                         no = -1;
-                        let isIdExist = supplyManager.findById(inputId);
+                        let isIdExist = SupplyManager.findById(inputId);
                         if (isIdExist == no) {
                             console.log('!!! This ID is not exist. Please try again');
                         } else {
@@ -64,18 +63,18 @@ export class AdminMenuSupplyManager {
                             inputPrice = +readlineSync.question('Price: ');
                             inputQuantity = +readlineSync.question('Quantity: ');
                             let updateItem = new Supplies(inputId, inputName, inputPrice, inputQuantity);
-                            supplyManager.editItem(inputId, updateItem);
+                            SupplyManager.editItem(inputId, updateItem);
                         }
                         break;
 
                     case 4:
                         inputId = readlineSync.question('ID: ');
                         no = -1;
-                        isIdAvailable = supplyManager.findById(inputId);
+                        isIdAvailable = SupplyManager.findById(inputId);
                         if (isIdAvailable == no) {
                             console.log('!!! This ID is not exist. Please try again');
                         } else {
-                            supplyManager.removeItem(inputId);
+                            SupplyManager.removeItem(inputId);
                             console.log('!!! Remove successful')
                         }
                         break;

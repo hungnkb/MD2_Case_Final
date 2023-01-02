@@ -14,7 +14,6 @@ export class AdminMenuUserManager {
     4. Remove user
     5. Back
     `
-    userManager = new AdminManager();
 
     adminMenuUserManager() {
         let back = new AdminMenu();
@@ -31,7 +30,7 @@ export class AdminMenuUserManager {
 
         switch (choice) {
             case 1:
-                console.table(this.userManager.showList());
+                console.table(AdminManager.showList());
                 this.adminMenuUserManager();
                 break;
 
@@ -39,7 +38,7 @@ export class AdminMenuUserManager {
                 let isLoopId = true;
                 while (isLoopId) {
                     inputId = readlineSync.question('ID: ');
-                    let isIdAvailable = this.userManager.findById(inputId)
+                    let isIdAvailable = AdminManager.findById(inputId)
                     if (!idValidate.validate(inputId)) {
                         console.log('!!! Wrong type of ID. Please try again');
                         continue;
@@ -55,7 +54,7 @@ export class AdminMenuUserManager {
                     if (passwordValidate.validate(inputPassword)) {
                         let inputName = readlineSync.question('Name: ');
                         let newUser = new User(inputId, inputName, inputPassword);
-                        this.userManager.addUser(newUser);
+                        AdminManager.addUser(newUser);
                         console.log('!!! Add new user successful !!!');
                         this.adminMenuUserManager();
                     } else {
@@ -68,7 +67,7 @@ export class AdminMenuUserManager {
 
             case 3:
                 inputId = readlineSync.question('ID: ');
-                isIdExist = this.userManager.findById(inputId);
+                isIdExist = AdminManager.findById(inputId);
 
                 if (isIdExist == no) {
                     console.log('!!! This ID is unavailable. Please try again !!!');
@@ -86,20 +85,20 @@ export class AdminMenuUserManager {
                     }
                     inputName = readlineSync.question('Name: ');
                     let updateUser = new User(inputId, inputName, inputPassword);
-                    this.userManager.editUser(inputId, updateUser)
+                    AdminManager.editUser(inputId, updateUser)
                     console.log('!!! Edit successful !!!');
                     this.adminMenuUserManager();
                 }
 
             case 4:
                 inputId = readlineSync.question('ID: ');
-                isIdExist = this.userManager.findById(inputId);
+                isIdExist = AdminManager.findById(inputId);
 
                 if (isIdExist == no) {
                     console.log('!!! This ID is not exist. Please try again !!!');
                     this.adminMenuUserManager();
                 } else {
-                    this.userManager.removeUser(inputId);
+                    AdminManager.removeUser(inputId);
                     console.log('!!! Remove successful !!!');
                     this.adminMenuUserManager();
                 }

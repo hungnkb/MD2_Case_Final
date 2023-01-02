@@ -5,7 +5,6 @@ import { UserCart } from "../Controller/UserCart";
 import { MainMenu } from "./MainMenu";
 
 export class UserMenu {
-    supplyManager = new SupplyManager();
     userCart = new UserCart('', '', 0, 0);
     logout = new MainMenu();
     menu = `
@@ -31,13 +30,13 @@ export class UserMenu {
             let choice = +readlineSync.question('Pick your choice: ');
             switch (choice) {
                 case 1:
-                    console.table(this.supplyManager.supplyList);
+                    console.table(SupplyManager.supplyList);
                     break;
                 case 2:
                     let inputId = readlineSync.question('Id item: ');
                     let isLoop = true;
                     while (isLoop) {
-                        isIdExistSupply = indexSupply = this.supplyManager.findById(inputId);
+                        isIdExistSupply = indexSupply = SupplyManager.findById(inputId);
                         isIdExistCart = indexCart = this.userCart.findById(inputId);
                         if (isIdExistSupply == no) {
                             console.log('!!! This item is not exist. Please try again');
@@ -47,7 +46,7 @@ export class UserMenu {
                             while (isLoop2) {
                                 inputQuantity = +readlineSync.question('Quantity: ');
                                 if (isIdExistCart == no) {
-                                    let itemSupply: any = this.supplyManager.checkQuantity(inputId);
+                                    let itemSupply: any = SupplyManager.checkQuantity(inputId);
                                     if (inputQuantity > itemSupply) {
                                         console.log('!!! Storage is not enough. Please try again');
                                         break;
@@ -74,21 +73,24 @@ export class UserMenu {
                     let isLoop3 = true;
                     while (isLoop3) {
                         let inputId = readlineSync.question('Id: ');
-                        let index = this.userCart.findById(inputId);
+                        let indexCart = this.userCart.findById(inputId);
+                        let indexSupply = SupplyManager.findById(inputId);
                         let notExist = -1;
-                        if (index == notExist) {
+                        if (indexCart == notExist) {
                             console.log('!!! This item is not exist in cart. Please try again');
                             break;
                         } else {
                             let inputQuantity = +readlineSync.question('Quantity: ');
-                            let removeItemInCart = inputQuantity >= this.userCart.itemList[index].quantity;
-                            let itemInCartQuantity = this.userCart.itemList[index].quantity;
+                            let removeItemInCart = inputQuantity >= this.userCart.itemList[indexCart].quantity;
+                            let itemInCartQuantity = this.userCart.itemList[indexCart].quantity;
                             if (removeItemInCart) {
-                                this.userCart.itemList[index].quantity = 0;
+                                this.userCart.itemList[indexCart].quantity = 0;
+                                SupplyManager.supplyList[indexSupply].quantity = SupplyManager.supplyList[indexSupply].quantity + inputQuantity;
                                 console.log('!!! Edit cart successful');
                                 isLoop3 = false;
                             } else {
-                                this.userCart.itemList[index].quantity = itemInCartQuantity - inputQuantity;
+                                this.userCart.itemList[indexCart].quantity = itemInCartQuantity - inputQuantity;
+                                SupplyManager.supplyList[indexSupply].quantity = SupplyManager.supplyList[indexSupply].quantity + inputQuantity;
                                 console.log('!!! Edit cart successful');
                                 isLoop3 = false;
                             }
@@ -107,12 +109,12 @@ export class UserMenu {
 
     addItemExistCart(indexCart: number, inputQuantity: number, indexSupply: number) {
         this.userCart.itemList[indexCart].quantity = this.userCart.itemList[indexCart].quantity + inputQuantity;
-        this.supplyManager.supplyList[indexSupply].quantity = this.supplyManager.supplyList[indexSupply].quantity - inputQuantity;
+        SupplyManager.supplyList[indexSupply].quantity = SupplyManager.supplyList[indexSupply].quantity - inputQuantity;
     }
 
     addItemNoExistCart(inputId: string, inputQuantity: number, indexSupply: number) {
-        let newItem = new Supplies(inputId, this.supplyManager.supplyList[indexSupply].name, this.supplyManager.supplyList[indexSupply].price, inputQuantity)
+        let newItem = new Supplies(inputId, SupplyManager.supplyList[indexSupply].name, SupplyManager.supplyList[indexSupply].price, inputQuantity)
         this.userCart.addItem(newItem);
-        this.supplyManager.supplyList[indexSupply].quantity = this.supplyManager.supplyList[indexSupply].quantity - inputQuantity;
+        SupplyManager.supplyList[indexSupply].quantity = SupplyManager.supplyList[indexSupply].quantity - inputQuantity;
     }
 }

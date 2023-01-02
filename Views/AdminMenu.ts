@@ -1,12 +1,10 @@
 var readlineSync = require('readline-sync');
-import { AdminManager } from "../Controller/AdminManager";
 import { MainMenu } from "./MainMenu";
 import { AdminMenuUserManager } from "./AdminMenuUserManager";
 import { AdminMenuSupplyManager } from "./AdminMenuSupplyManager"
 
 export class AdminMenu {
 
-    adminManager = new AdminManager();
     adminMenuUserManager = new AdminMenuUserManager();
     adminMenuSupplyManager = new AdminMenuSupplyManager();
     menu = `
