@@ -3,13 +3,11 @@ import { SupplyManager } from "../Controller/SupplyManager";
 import { Supplies } from "../Models/Supplies";
 import { UserCart } from "../Controller/UserCart";
 import { MainMenu } from "./MainMenu";
-import { UserCartMenu } from "./UserCartMenu";
 
 
 export class UserMenu {
     supplyManager = new SupplyManager();
     userCart = new UserCart('', '', 0, 0);
-    userCartMenu = new UserCartMenu();
     logout = new MainMenu();
     menu = `
     ----------* User Menu *----------
