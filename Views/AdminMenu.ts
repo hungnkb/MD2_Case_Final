@@ -9,7 +9,7 @@ export class AdminMenu {
     adminManager = new AdminManager();
     adminMenuUserManager = new AdminMenuUserManager();
     adminMenuSupplyManager = new AdminMenuSupplyManager();
-    menu: string = `
+    menu = `
     ----------* Administrator Menu *----------
     1. User Manager
     2. Supply Manager
@@ -18,8 +18,7 @@ export class AdminMenu {
 
     adminMenu() {
         let logout = new MainMenu();
-        
-    
+
             while (true) {
                 console.log(this.menu);
                 let choice = +readlineSync.question('Pick your choice: ');
@@ -34,7 +33,5 @@ export class AdminMenu {
                         return logout.mainMenu   
                 }
             }
-       
-        
     }
 }

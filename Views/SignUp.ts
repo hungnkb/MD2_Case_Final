@@ -12,7 +12,7 @@ export class Signup {
 
 
     signup(): User | any {
-        let inputId: string = '';
+        let inputId = '';
         let isLoop = true;
         let newUser: User;
         while (isLoop) {

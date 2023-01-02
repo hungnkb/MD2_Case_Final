@@ -79,6 +79,7 @@ export class AdminMenuSupplyManager {
                             console.log('!!! Remove successful')
                         }
                         break;
+                        
                     case 5:
                         return back.adminMenu;
                 }

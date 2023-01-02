@@ -1,4 +1,4 @@
-import { Supplies } from "./Supplies";
+import { Supplies } from "../Models/Supplies";
 
 export class UserCart {
     id: string;
@@ -30,8 +30,6 @@ export class UserCart {
         this.itemList[index].quantity = this.itemList[index].quantity - quantity;
     }
 
-
-
     findById(id: string): number {
         for (let i in this.itemList) {
             if (id == this.itemList[i].getId()) {
@@ -51,11 +49,13 @@ export class UserCart {
         }
     }
 
-    bill() {
+    bill(): number {
         let total = 0;
         for (let i of this.itemList) {
             total += (i.price * i.quantity);
         }
+        let clearCart: Supplies[] = [];
+        this.itemList = clearCart;
         return total;
     }
 }

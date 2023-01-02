@@ -12,21 +12,19 @@ export class SupplyManager {
         this.supplyList.push(new Supplies('B003', 'Beer 003', 1.2, 1000));
     }
 
-    showList() {
+    showList(): Supplies[] {
         return this.supplyList;
     }
 
-    addItem(newItem: Supplies) {
+    addItem(newItem: Supplies): void {
         this.supplyList.push(newItem);
     }
 
-    editItem(id: string, updateItem: Supplies) {
+    editItem(id: string, updateItem: Supplies): void {
         let index = this.findById(id)
         if (index != -1) {
             this.supplyList[index] = updateItem;
-        } else {
-            return 'This item is not exist. Please try again'
-        }
+        } 
     }
 
     editQuantity(id: string, quantity: number) {
@@ -34,16 +32,14 @@ export class SupplyManager {
         this.supplyList[index].quantity -= quantity;
     }
 
-    removeItem(id: string) {
+    removeItem(id: string): void {
         let index = this.findById(id)
         if (index != -1) {
             this.supplyList.splice(index, 1)
-        } else {
-            return 'This item is not exist. Please try again'
         }
     }
 
-    findById(id: string) {
+    findById(id: string): number {
         for (let i in this.supplyList) {
             if (id == this.supplyList[i].getId()) {
                 return +i;
@@ -52,7 +48,7 @@ export class SupplyManager {
         return -1;
     }
 
-    checkQuantity(id: string) {
+    checkQuantity(id: string): number | any {
         this.findById(id)
         let quantity = 0;
         for (let i in this.supplyList) {

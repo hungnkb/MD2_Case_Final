@@ -1,7 +1,7 @@
 var readlineSync = require('readline-sync');
 import { SupplyManager } from "../Controller/SupplyManager";
 import { Supplies } from "../Models/Supplies";
-import { UserCart } from "../Models/UserCart";
+import { UserCart } from "../Controller/UserCart";
 import { MainMenu } from "./MainMenu";
 import { UserCartMenu } from "./UserCartMenu";
 
@@ -22,12 +22,12 @@ export class UserMenu {
     `
 
     userMenu() {
-        let isIdExistSupply: number;
-        let isIdExistCart: number;
+        let isIdExistSupply = 0;
+        let isIdExistCart = 0;
         let no = -1;
-        let indexSupply: number;
-        let indexCart: number;
-        let inputQuantity: number = 0;
+        let indexSupply = 0;
+        let indexCart = 0;
+        let inputQuantity = 0;
 
         while (true) {
             console.log(this.menu);
@@ -50,12 +50,10 @@ export class UserMenu {
                             while (isLoop2) {
                                 inputQuantity = +readlineSync.question('Quantity: ');
                                 if (isIdExistCart == no) {
-
                                     let itemSupply: any = this.supplyManager.checkQuantity(inputId);
                                     if (inputQuantity > itemSupply) {
                                         console.log('!!! Storage is not enough. Please try again');
                                         break;
-
                                     } else {
                                         let newItem = new Supplies(inputId, this.supplyManager.supplyList[indexSupply].name, this.supplyManager.supplyList[indexSupply].price, inputQuantity)
                                         this.userCart.addItem(newItem);
@@ -69,7 +67,6 @@ export class UserMenu {
                                     this.supplyManager.supplyList[indexSupply].quantity = this.supplyManager.supplyList[indexSupply].quantity - inputQuantity;
                                     console.log('!!! Add item to cart successful');
                                     isLoop2 = false;
-
                                 }
                             }
                             isLoop = false;

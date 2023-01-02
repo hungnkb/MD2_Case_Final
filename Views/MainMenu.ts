@@ -1,15 +1,13 @@
 var readlineSync = require('readline-sync');
 import { AdminManager } from "../Controller/AdminManager";
-import { User } from "../Models/User";
 import { AdminMenu } from "./AdminMenu";
-import { AdminMenuUserManager } from "./AdminMenuUserManager";
 import { Signup } from "./SignUp";
 import { UserMenu } from "./UserMenu";
 
 export class MainMenu {
     adminManager = new AdminManager();
     ;
-    menu: string = `
+    menu = `
     ----------* Welcome to AGE-30 store *----------
     1. Login
     2. Signup
@@ -18,14 +16,12 @@ export class MainMenu {
 
     mainMenu = () => {
         let isLoop = true;
-        let inputId: string = '';
-        let inputPassword: string;
-        let inputName: string;
-        let choice;
+        let inputId = '';
+        let inputPassword = '';
+        let choice = 0;
         while (isLoop) {
             console.log(this.menu);
             choice = +readlineSync.question("Enter your choice: ");
-
 
             switch (choice) {
                 case 1:

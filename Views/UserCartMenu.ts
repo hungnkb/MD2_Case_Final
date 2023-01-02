@@ -1,10 +1,8 @@
-import { UserCart } from "../Models/UserCart";
-import { UserMenu } from "./UserMenu";
+import { UserCart } from "../Controller/UserCart";
 var readlineSync = require('readline-sync');
 
 export class UserCartMenu {
     userCart = new UserCart();
-    // back = new UserMenu();
     menu = `
     1. Show cart
     2. Edit cart
@@ -24,12 +22,11 @@ export class UserCartMenu {
                     while (true) {
                         let inputId = readlineSync.question('Id: ');
                         let index = this.userCart.findById(inputId);
-
                         let notExist = -1;
                         if (index == notExist) {
                             console.log('!!! This item is not exist in cart. Please try again');
                             break;
-                        } else {
+                        } else {                          
                             let inputQuantity = +readlineSync.question('Quantity: ');
                             if (inputQuantity >= this.userCart.itemList[index].quantity) {
                                 this.userCart.itemList[index].quantity = 0;

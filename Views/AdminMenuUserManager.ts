@@ -20,10 +20,10 @@ export class AdminMenuUserManager {
         let back = new AdminMenu();
         console.log(this.menu)
         let choice = +readlineSync.question('Pick your choice: ');
-        let inputId;
-        let inputName;
-        let inputPassword;
-        let isIdExist;
+        let inputId = '';
+        let inputName = '';
+        let inputPassword = '';
+        let isIdExist = 0;
         let no = -1;
         let idValidate = new IdValidate();
         let passwordValidate = new PasswordValidate();
@@ -36,7 +36,6 @@ export class AdminMenuUserManager {
                 break;
 
             case 2:
-
                 let isLoopId = true;
                 while (isLoopId) {
                     inputId = readlineSync.question('ID: ');
@@ -65,7 +64,8 @@ export class AdminMenuUserManager {
                     }
                 }
                 this.adminMenuUserManager();
-                break
+                break;
+
             case 3:
                 inputId = readlineSync.question('ID: ');
                 isIdExist = this.userManager.findById(inputId);
@@ -104,6 +104,7 @@ export class AdminMenuUserManager {
                     this.adminMenuUserManager();
                 }
                 break;
+                
             case 5:
                 return back.adminMenu;
         }
