@@ -35,7 +35,7 @@ export class Signup {
 
         let isLoop2 = true;
         while (isLoop2) {
-            console.log('Password need at lease 6 words, include alphabet and at lease 1 symbol [#?!@$%^&*-]');
+            console.log('Password need at lease 6 words, include alphabet and at least 1 symbol [#?!@$%^&*-]');
             let inputPassword = readlineSync.question('Password: ');
             if (this.passwordValidate.validate(inputPassword)) {
                 let inputName = readlineSync.question('Name: ');

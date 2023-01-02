@@ -7,8 +7,8 @@ export class SupplyManager {
         this.supplyList.push(new Supplies('S001', 'Snack 001', 0.5, 1000));
         this.supplyList.push(new Supplies('S002', 'Snack 002', 0.3, 1000));
         this.supplyList.push(new Supplies('S003', 'Snack 003', 0.1, 1000));
-        this.supplyList.push(new Supplies('B001', 'Beer 003', 0.8, 1000));
-        this.supplyList.push(new Supplies('B002', 'Beer 003', 1, 1000));
+        this.supplyList.push(new Supplies('B001', 'Beer 001', 0.8, 1000));
+        this.supplyList.push(new Supplies('B002', 'Beer 002', 1, 1000));
         this.supplyList.push(new Supplies('B003', 'Beer 003', 1.2, 1000));
     }
 

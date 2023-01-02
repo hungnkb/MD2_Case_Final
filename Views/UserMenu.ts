@@ -4,7 +4,6 @@ import { Supplies } from "../Models/Supplies";
 import { UserCart } from "../Controller/UserCart";
 import { MainMenu } from "./MainMenu";
 
-
 export class UserMenu {
     supplyManager = new SupplyManager();
     userCart = new UserCart('', '', 0, 0);
@@ -76,7 +75,6 @@ export class UserMenu {
                     while (isLoop3) {
                         let inputId = readlineSync.question('Id: ');
                         let index = this.userCart.findById(inputId);
-
                         let notExist = -1;
                         if (index == notExist) {
                             console.log('!!! This item is not exist in cart. Please try again');

@@ -32,7 +32,8 @@ export class MainMenu {
                         inputId = readlineSync.question('ID: ');
                         inputPassword = readlineSync.question('Password: ');
                         let checkLogin = this.adminManager.checkLogin(inputId, inputPassword);
-                        if (checkLogin == -1) {
+                        let idUnavailable = -1;
+                        if (checkLogin == idUnavailable) {
                             console.log('!!! This ID is unavailable. Please try again');
 
                         } else {
@@ -42,7 +43,9 @@ export class MainMenu {
                     }
 
                     let indexOfId = this.adminManager.findById(inputId);
-                    if (this.adminManager.userList[indexOfId].getRole() == 1) {
+                    let _user = 1;
+                    let checkRole = this.adminManager.userList[indexOfId].getRole()
+                    if (checkRole == _user) {
                         userMenu.userMenu();
                     } else {
                         adminMenu.adminMenu();
