@@ -84,13 +84,14 @@ export class UserMenu {
                             let removeItemInCart = inputQuantity >= this.userCart.itemList[indexCart].quantity;
                             let itemInCartQuantity = this.userCart.itemList[indexCart].quantity;
                             if (removeItemInCart) {
-                                this.userCart.itemList[indexCart].quantity = 0;
-                                SupplyManager.supplyList[indexSupply].quantity = SupplyManager.supplyList[indexSupply].quantity + inputQuantity;
+                                let clearCart = 0;
+                                this.userCart.itemList[indexCart].quantity = clearCart;
+                                this.addItemBackSupply(indexSupply, inputQuantity);
                                 console.log('!!! Edit cart successful');
                                 isLoop3 = false;
                             } else {
                                 this.userCart.itemList[indexCart].quantity = itemInCartQuantity - inputQuantity;
-                                SupplyManager.supplyList[indexSupply].quantity = SupplyManager.supplyList[indexSupply].quantity + inputQuantity;
+                                this.addItemBackSupply(indexSupply, inputQuantity);
                                 console.log('!!! Edit cart successful');
                                 isLoop3 = false;
                             }
@@ -116,5 +117,9 @@ export class UserMenu {
         let newItem = new Supplies(inputId, SupplyManager.supplyList[indexSupply].name, SupplyManager.supplyList[indexSupply].price, inputQuantity)
         this.userCart.addItem(newItem);
         SupplyManager.supplyList[indexSupply].quantity = SupplyManager.supplyList[indexSupply].quantity - inputQuantity;
+    }
+
+    addItemBackSupply(indexSupply: number, inputQuantity: number) {
+        SupplyManager.supplyList[indexSupply].quantity = SupplyManager.supplyList[indexSupply].quantity + inputQuantity;
     }
 }

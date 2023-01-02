@@ -6,11 +6,11 @@ export class AdminManager {
     static userList: User[] = [];
 
     constructor() {
-        AdminManager.userList.push(new User('hung', 'Hung', '123', 0))
-        AdminManager.userList.push(new User('hung2', 'Hung2', '123'))
-        AdminManager.userList.push(new User('hung3', 'Hung3', '123'))
-        AdminManager.userList.push(new User('hung4', 'Hung4', '123'))
-        AdminManager.userList.push(new User('hung5', 'Hung5', '123'))
+        AdminManager.userList.push(new User('hung', 'Hung', '123', 0));
+        AdminManager.userList.push(new User('hung2', 'Hung2', '123'));
+        AdminManager.userList.push(new User('hung3', 'Hung3', '123'));
+        AdminManager.userList.push(new User('hung4', 'Hung4', '123'));
+        AdminManager.userList.push(new User('hung5', 'Hung5', '123'));
     }
 
     static showList() {
@@ -18,7 +18,7 @@ export class AdminManager {
     }
 
     static addUser(newUser: User) {
-        AdminManager.userList.push(newUser)
+        AdminManager.userList.push(newUser);
     }
 
     static editUser(id: string, updateUser: User) {
@@ -33,7 +33,7 @@ export class AdminManager {
         if (index != -1) {
             AdminManager.userList.splice(index, 1)
         } else {
-            return 'This user is not exist. Please try again'
+            return 'This user is not exist. Please try again';
         }
     }
 
@@ -59,7 +59,7 @@ export class AdminManager {
 
     static checkAdmin(user: User) {
         if (user.role == 1) {
-            return 1
-        } return 0
+            return 1;
+        } return 0;
     }
 }

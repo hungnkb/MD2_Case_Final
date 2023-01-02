@@ -28,7 +28,7 @@ export class AdminMenu {
                         this.adminMenuSupplyManager.adminMenuSupplyManager();
                         break;
                     case 3:
-                        return logout.mainMenu   
+                        return logout.mainMenu;   
                 }
             }
     }
