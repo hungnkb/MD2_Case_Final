@@ -58,14 +58,14 @@ export class AdminMenuUserManager {
                         console.log('!!! Add new user successful !!!');
                         this.adminMenuUserManager();
                         break;
-                    
+
                     } else {
                         console.log('!!! Wrong type of password. Please try again');
                         continue;
                     }
                 }
                 break;
-                
+
 
             case 3:
                 inputId = readlineSync.question('ID: ');
@@ -77,6 +77,7 @@ export class AdminMenuUserManager {
                     break;
                 } else {
                     while (isLoopPassword) {
+                        console.log('Password need at lease 6 words, include alphabet and at least 1 symbol [#?!@$%^&*-]')
                         inputPassword = readlineSync.question('Password: ');
                         if (passwordValidate.validate(inputPassword)) {
                             isLoopPassword = false;
@@ -90,6 +91,7 @@ export class AdminMenuUserManager {
                     AdminManager.editUser(inputId, updateUser)
                     console.log('!!! Edit successful !!!');
                     this.adminMenuUserManager();
+                    break;
                 }
 
             case 4:
@@ -99,13 +101,14 @@ export class AdminMenuUserManager {
                 if (isIdExist == no) {
                     console.log('!!! This ID is not exist. Please try again !!!');
                     this.adminMenuUserManager();
+                    break;
                 } else {
                     AdminManager.removeUser(inputId);
                     console.log('!!! Remove successful !!!');
                     this.adminMenuUserManager();
+                    break;
                 }
-                break;
-                
+
             case 5:
                 return back.adminMenu;
         }
