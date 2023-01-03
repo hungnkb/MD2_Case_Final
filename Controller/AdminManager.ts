@@ -23,17 +23,19 @@ export class AdminManager {
 
     static editUser(id: string, updateUser: User) {
         let index = this.findById(id)
-        if (index != -1) {
+        let notExist = -1;
+        if (index != notExist) {
             AdminManager.userList[index] = updateUser;
         }
     }
 
     static removeUser(id: string) {
         let index = this.findById(id)
-        if (index != -1) {
+        let notExist = -1;
+        if (index != notExist) {
             AdminManager.userList.splice(index, 1)
         } else {
-            return 'This user is not exist. Please try again';
+            return;
         }
     }
 
@@ -48,7 +50,8 @@ export class AdminManager {
 
     static checkLogin(id: string, password: string) {
         let checkId = this.findById(id);
-        if (checkId != -1) {
+        let notExist = -1;
+        if (checkId != notExist) {
             for (let i in AdminManager.userList[checkId]) {
                 if (password == AdminManager.userList[checkId].getPassword()) {
                     return +i;

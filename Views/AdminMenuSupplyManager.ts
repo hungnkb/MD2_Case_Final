@@ -31,7 +31,7 @@ export class AdminMenuSupplyManager {
             inCorrectChoice = choice <= 0 || choice >= 6;
             correctChoice = choice >= 1 || choice <= 5;
             if (inCorrectChoice) {
-                console.log("!!! Wrong choice. Please try again")
+                console.log("[!!!] Wrong choice. Please try again")
             } else {
                 switch (choice) {
                     case 1:
@@ -48,11 +48,11 @@ export class AdminMenuSupplyManager {
                             inputQuantity = +readlineSync.question('Quantity: ');
                             let newSupply = new Supplies(inputId, inputName, inputPrice, inputQuantity);
                             SupplyManager.addItem(newSupply);
-                            console.log('!!! Add item successful');
+                            console.log('[v] Add item successful');
                         } else {
                             inputQuantity = +readlineSync.question('Quantity: ');
                             SupplyManager.supplyList[index].quantity = SupplyManager.supplyList[index].quantity + inputQuantity;
-                            console.log('!!! Add item successful');
+                            console.log('[v] Add item successful');
                         }
                         break;
 
@@ -61,7 +61,7 @@ export class AdminMenuSupplyManager {
                         no = -1;
                         isIdExist = SupplyManager.findById(inputId);
                         if (isIdExist == no) {
-                            console.log('!!! This ID is not exist. Please try again');
+                            console.log('[!!!] This ID is not exist. Please try again');
                         } else {
                             inputName = readlineSync.question('Name: ');
                             inputPrice = +readlineSync.question('Price: ');
@@ -76,10 +76,10 @@ export class AdminMenuSupplyManager {
                         no = -1;
                         isIdAvailable = SupplyManager.findById(inputId);
                         if (isIdAvailable == no) {
-                            console.log('!!! This ID is not exist. Please try again');
+                            console.log('[!!!] This ID is not exist. Please try again');
                         } else {
                             SupplyManager.removeItem(inputId);
-                            console.log('!!! Remove successful')
+                            console.log('[v] Remove successful')
                         }
                         break;
 

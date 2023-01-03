@@ -37,32 +37,32 @@ export class AdminMenuUserManager {
             case 2:
                 let isLoopId = true;
                 while (isLoopId) {
-                    console.log('ID need at least 2 words, not include symbol');
+                    console.log('[i] ID need at least 2 words, not include symbol');
                     inputId = readlineSync.question('ID: ');
                     let isIdAvailable = AdminManager.findById(inputId)
                     if (!idValidate.validate(inputId)) {
-                        console.log('!!! Wrong type of ID. Please try again');
+                        console.log('[!!!] Wrong type of ID. Please try again');
                         continue;
                     } else if (isIdAvailable != -1) {
-                        console.log('!!! This ID is unavailable. Please try again !!!');
+                        console.log('[!!!] This ID is unavailable. Please try again');
                         continue;
                     } else {
                         isLoopId = false;
                     }
                 }
                 while (isLoopPassword) {
-                    console.log('Password need at lease 6 words, include alphabet and at least 1 symbol [#?!@$%^&*-]');
+                    console.log('[i] Password need at lease 6 words, include alphabet and at least 1 symbol [#?!@$%^&*-]');
                     inputPassword = readlineSync.question('Password: ');
                     if (passwordValidate.validate(inputPassword)) {
                         let inputName = readlineSync.question('Name: ');
                         let newUser = new User(inputId, inputName, inputPassword);
                         AdminManager.addUser(newUser);
-                        console.log('!!! Add new user successful !!!');
+                        console.log('[v] Add new user successful');
                         this.adminMenuUserManager();
                         break;
 
                     } else {
-                        console.log('!!! Wrong type of password. Please try again');
+                        console.log('[!!!] Wrong type of password. Please try again');
                         continue;
                     }
                 }
@@ -74,24 +74,24 @@ export class AdminMenuUserManager {
                 isIdExist = AdminManager.findById(inputId);
 
                 if (isIdExist == no) {
-                    console.log('!!! This ID is unavailable. Please try again !!!');
+                    console.log('[!!!] This ID is unavailable. Please try again');
                     this.adminMenuUserManager();
                     break;
                 } else {
                     while (isLoopPassword) {
-                        console.log('Password need at lease 6 words, include alphabet and at least 1 symbol [#?!@$%^&*-]')
+                        console.log('[i] Password need at lease 6 words, include alphabet and at least 1 symbol [#?!@$%^&*-]')
                         inputPassword = readlineSync.question('Password: ');
                         if (passwordValidate.validate(inputPassword)) {
                             isLoopPassword = false;
                             break;
                         } else {
-                            console.log('!!! Wrong type of password. Please try again');
+                            console.log('[!!!] Wrong type of password. Please try again');
                         }
                     }
                     inputName = readlineSync.question('Name: ');
                     let updateUser = new User(inputId, inputName, inputPassword);
                     AdminManager.editUser(inputId, updateUser)
-                    console.log('!!! Edit successful !!!');
+                    console.log('[v] Edit successful');
                     this.adminMenuUserManager();
                     break;
                 }
@@ -101,12 +101,12 @@ export class AdminMenuUserManager {
                 isIdExist = AdminManager.findById(inputId);
 
                 if (isIdExist == no) {
-                    console.log('!!! This ID is not exist. Please try again !!!');
+                    console.log('[!!!] This ID is not exist. Please try again');
                     this.adminMenuUserManager();
                     break;
                 } else {
                     AdminManager.removeUser(inputId);
-                    console.log('!!! Remove successful !!!');
+                    console.log('[v] Remove successful');
                     this.adminMenuUserManager();
                     break;
                 }

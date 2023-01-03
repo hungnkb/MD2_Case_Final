@@ -39,7 +39,7 @@ export class UserMenu {
                         isIdExistSupply = indexSupply = SupplyManager.findById(inputId);
                         isIdExistCart = indexCart = this.userCart.findById(inputId);
                         if (isIdExistSupply == no) {
-                            console.log('!!! This item is not exist. Please try again');
+                            console.log('[!!!] This item is not exist. Please try again');
                             break;
                         } else {
                             let isLoop2 = true;
@@ -48,17 +48,17 @@ export class UserMenu {
                                 if (isIdExistCart == no) {
                                     let itemSupply: any = SupplyManager.checkQuantity(inputId);
                                     if (inputQuantity > itemSupply) {
-                                        console.log('!!! Storage is not enough. Please try again');
+                                        console.log('[!!!] Storage is not enough. Please try again');
                                         break;
                                     } else {
                                         this.addItemNoExistCart(inputId, inputQuantity, indexSupply);
-                                        console.log('!!! Add item to cart successful');
+                                        console.log('[v] Add item to cart successful');
                                         isLoop2 = false;
                                     }
                                 }
                                 else {
                                     this.addItemExistCart(indexCart, inputQuantity, indexSupply);
-                                    console.log('!!! Add item to cart successful');
+                                    console.log('[v] Add item to cart successful');
                                     isLoop2 = false;
                                 }
                             }
@@ -77,7 +77,7 @@ export class UserMenu {
                         let indexSupply = SupplyManager.findById(inputId);
                         let notExist = -1;
                         if (indexCart == notExist) {
-                            console.log('!!! This item is not exist in cart. Please try again');
+                            console.log('[!!!] This item is not exist in cart. Please try again');
                             break;
                         } else {
                             let inputQuantity = +readlineSync.question('Quantity: ');
@@ -87,12 +87,12 @@ export class UserMenu {
                                 let clearCart = 0;
                                 this.userCart.itemList[indexCart].quantity = clearCart;
                                 this.addItemBackSupply(indexSupply, inputQuantity);
-                                console.log('!!! Edit cart successful');
+                                console.log('[v] Edit cart successful');
                                 isLoop3 = false;
                             } else {
                                 this.userCart.itemList[indexCart].quantity = itemInCartQuantity - inputQuantity;
                                 this.addItemBackSupply(indexSupply, inputQuantity);
-                                console.log('!!! Edit cart successful');
+                                console.log('[v] Edit cart successful');
                                 isLoop3 = false;
                             }
                         }
@@ -100,7 +100,7 @@ export class UserMenu {
                     break;
                 case 5:
                     console.log('$' + this.userCart.bill());
-                    console.log('!!! Payment has been done. Thank you');
+                    console.log('[v] Payment has been done. Thank you');
                     break;
                 case 6:
                     return this.logout.mainMenu;

@@ -34,10 +34,10 @@ export class MainMenu {
                         let checkLogin = AdminManager.checkLogin(inputId, inputPassword);
                         let idUnavailable = -1;
                         if (checkLogin == idUnavailable) {
-                            console.log('!!! This ID is unavailable. Please try again');
+                            console.log('[!!!] This ID is unavailable. Please try again');
 
                         } else {
-                            console.log('!!! Login successful')
+                            console.log('[v] Login successful')
                             isLoop1 = false;
                         }
                     }
