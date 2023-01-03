@@ -57,13 +57,15 @@ export class AdminMenuUserManager {
                         AdminManager.addUser(newUser);
                         console.log('!!! Add new user successful !!!');
                         this.adminMenuUserManager();
+                        break;
+                    
                     } else {
                         console.log('!!! Wrong type of password. Please try again');
                         continue;
                     }
                 }
-                this.adminMenuUserManager();
                 break;
+                
 
             case 3:
                 inputId = readlineSync.question('ID: ');
