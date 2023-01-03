@@ -37,6 +37,7 @@ export class AdminMenuUserManager {
             case 2:
                 let isLoopId = true;
                 while (isLoopId) {
+                    console.log('ID need at least 2 words, not include symbol');
                     inputId = readlineSync.question('ID: ');
                     let isIdAvailable = AdminManager.findById(inputId)
                     if (!idValidate.validate(inputId)) {
@@ -50,6 +51,7 @@ export class AdminMenuUserManager {
                     }
                 }
                 while (isLoopPassword) {
+                    console.log('Password need at lease 6 words, include alphabet and at least 1 symbol [#?!@$%^&*-]');
                     inputPassword = readlineSync.question('Password: ');
                     if (passwordValidate.validate(inputPassword)) {
                         let inputName = readlineSync.question('Name: ');
