@@ -123,3 +123,4 @@ export class UserMenu {
         SupplyManager.supplyList[indexSupply].quantity = SupplyManager.supplyList[indexSupply].quantity + inputQuantity;
     }
 }
+
