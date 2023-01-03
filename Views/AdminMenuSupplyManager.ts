@@ -23,6 +23,7 @@ export class AdminMenuSupplyManager {
         let inputQuantity: number;
         let no: number;
         let isIdAvailable: number;
+        let isIdExist: number;
 
         do {
             console.log(this.menu)
@@ -38,9 +39,10 @@ export class AdminMenuSupplyManager {
                         break;
                     case 2:
                         inputId = readlineSync.question('Id: ');
-                        isIdAvailable = SupplyManager.findById(inputId);
-                        let yes = -1;
-                        if (isIdAvailable == yes) {
+                        isIdExist = SupplyManager.findById(inputId);
+                        let index = isIdExist;
+                        let no = -1;
+                        if (isIdExist == no) {
                             inputName = readlineSync.question('Name: ');
                             inputPrice = +readlineSync.question('Price: ');
                             inputQuantity = +readlineSync.question('Quantity: ');
@@ -48,14 +50,16 @@ export class AdminMenuSupplyManager {
                             SupplyManager.addItem(newSupply);
                             console.log('!!! Add item successful');
                         } else {
-                            console.log('!!! This item is unavailable. Please try again');
+                            inputQuantity = +readlineSync.question('Quantity: ');
+                            SupplyManager.supplyList[index].quantity = SupplyManager.supplyList[index].quantity + inputQuantity;
+                            console.log('!!! Add item successful');
                         }
                         break;
 
                     case 3:
                         inputId = readlineSync.question('ID: ');
                         no = -1;
-                        let isIdExist = SupplyManager.findById(inputId);
+                        isIdExist = SupplyManager.findById(inputId);
                         if (isIdExist == no) {
                             console.log('!!! This ID is not exist. Please try again');
                         } else {
@@ -78,7 +82,7 @@ export class AdminMenuSupplyManager {
                             console.log('!!! Remove successful')
                         }
                         break;
-                        
+
                     case 5:
                         return back.adminMenu;
                 }
