@@ -6,7 +6,7 @@ import { Signup } from "./SignUp";
 import { UserMenu } from "./UserMenu";
 
 export class MainMenu {
-    ;
+    
     menu = `
     ----------* Welcome to AGE-30 store *----------
     1. Login
