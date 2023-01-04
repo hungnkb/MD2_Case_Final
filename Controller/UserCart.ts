@@ -56,9 +56,10 @@ export class UserCart {
             total += (i.price * i.quantity);
             SupplyManager.soldList.push(i)
         }
-        SupplyManager.revenue = SupplyManager.revenue += total;
         let clearCart: Supplies[] = [];
         this.itemList = clearCart;
-        return total;
+        let totalRounded = Math.round(total*100)/100;
+        SupplyManager.revenue = SupplyManager.revenue += totalRounded;
+        return totalRounded;
     }
 }
