@@ -1,4 +1,5 @@
 import { Supplies } from "../Models/Supplies";
+import { SupplyManager } from "./SupplyManager";
 
 export class UserCart {
     id: string;
@@ -54,6 +55,7 @@ export class UserCart {
         for (let i of this.itemList) {
             total += (i.price * i.quantity);
         }
+        SupplyManager.revenue = SupplyManager.revenue += total;
         let clearCart: Supplies[] = [];
         this.itemList = clearCart;
         return total;

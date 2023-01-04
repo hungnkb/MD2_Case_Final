@@ -2,6 +2,7 @@ import { Supplies } from "../Models/Supplies";
 
 export class SupplyManager {
     static supplyList: Supplies[] = [];
+    static revenue = 0;
 
     constructor() {
         SupplyManager.supplyList.push(new Supplies('S001', 'Snack 001', 0.5, 1000));
@@ -16,6 +17,10 @@ export class SupplyManager {
         return SupplyManager.supplyList;
     }
 
+    static showRevenue() {
+        return SupplyManager.revenue;
+    }
+
     static addItem(newItem: Supplies): void {
         SupplyManager.supplyList.push(newItem);
     }
@@ -27,7 +32,7 @@ export class SupplyManager {
         } 
     }
 
-    static editQuantity(id: string, quantity: number) {
+    static editQuantity(id: string, quantity: number): void {
         let index = this.findById(id);
         SupplyManager.supplyList[index].quantity -= quantity;
     }

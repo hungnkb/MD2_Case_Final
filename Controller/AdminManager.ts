@@ -13,15 +13,15 @@ export class AdminManager {
         AdminManager.userList.push(new User('hung5', 'Hung5', '123'));
     }
 
-    static showList() {
+    static showList(): User[] {
         return AdminManager.userList;
     }
 
-    static addUser(newUser: User) {
+    static addUser(newUser: User): void {
         AdminManager.userList.push(newUser);
     }
 
-    static editUser(id: string, updateUser: User) {
+    static editUser(id: string, updateUser: User): void {
         let index = this.findById(id)
         let notExist = -1;
         if (index != notExist) {
@@ -39,7 +39,7 @@ export class AdminManager {
         }
     }
 
-    static findById(id: string) {
+    static findById(id: string): number {
         for (let i in AdminManager.userList) {
             if (id == AdminManager.userList[i].getId()) {
                 return +i;
@@ -48,7 +48,7 @@ export class AdminManager {
         return -1;
     }
 
-    static checkLogin(id: string, password: string) {
+    static checkLogin(id: string, password: string): number {
         let checkId = this.findById(id);
         let notExist = -1;
         if (checkId != notExist) {
@@ -60,7 +60,7 @@ export class AdminManager {
         } return -1;
     }
 
-    static checkAdmin(user: User) {
+    static checkAdmin(user: User): number {
         if (user.role == 1) {
             return 1;
         } return 0;

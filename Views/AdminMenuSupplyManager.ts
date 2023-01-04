@@ -10,7 +10,8 @@ export class AdminMenuSupplyManager {
     2. Add item
     3. Edit item
     4. Remove item
-    5. Back
+    5. Revenue
+    6. Back
     `
 
     adminMenuSupplyManager() {
@@ -28,8 +29,8 @@ export class AdminMenuSupplyManager {
         do {
             console.log(this.menu)
             let choice = +readlineSync.question("Enter your choice: ");
-            inCorrectChoice = choice <= 0 || choice >= 6;
-            correctChoice = choice >= 1 || choice <= 5;
+            inCorrectChoice = choice <= 0 || choice >= 7;
+            correctChoice = choice >= 1 || choice <= 6;
             if (inCorrectChoice) {
                 console.log("[!!!] Wrong choice. Please try again")
             } else {
@@ -68,6 +69,7 @@ export class AdminMenuSupplyManager {
                             inputQuantity = +readlineSync.question('Quantity: ');
                             let updateItem = new Supplies(inputId, inputName, inputPrice, inputQuantity);
                             SupplyManager.editItem(inputId, updateItem);
+                            console.log('[v] Edit successful')
                         }
                         break;
 
@@ -84,6 +86,9 @@ export class AdminMenuSupplyManager {
                         break;
 
                     case 5:
+                        console.log('$' + SupplyManager.showRevenue());
+                        break;
+                    case 6:
                         return back.adminMenu;
                 }
             }
