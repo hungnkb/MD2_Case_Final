@@ -86,7 +86,8 @@ export class AdminMenuSupplyManager {
                         break;
 
                     case 5:
-                        console.log('$' + SupplyManager.showRevenue());
+                        console.table(SupplyManager.soldList)
+                        console.log('Revenue: $' + SupplyManager.showRevenue());
                         break;
                     case 6:
                         return back.adminMenu;

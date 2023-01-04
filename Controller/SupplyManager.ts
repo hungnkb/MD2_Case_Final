@@ -2,6 +2,7 @@ import { Supplies } from "../Models/Supplies";
 
 export class SupplyManager {
     static supplyList: Supplies[] = [];
+    static soldList: Supplies[] = [];
     static revenue = 0;
 
     constructor() {

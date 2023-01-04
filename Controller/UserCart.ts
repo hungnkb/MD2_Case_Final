@@ -54,6 +54,7 @@ export class UserCart {
         let total = 0;
         for (let i of this.itemList) {
             total += (i.price * i.quantity);
+            SupplyManager.soldList.push(i)
         }
         SupplyManager.revenue = SupplyManager.revenue += total;
         let clearCart: Supplies[] = [];
