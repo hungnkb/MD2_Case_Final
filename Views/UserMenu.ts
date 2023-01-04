@@ -103,6 +103,17 @@ export class UserMenu {
                     console.log('[v] Payment has been done. Thank you');
                     break;
                 case 6:
+                    let empty = -1;
+                    for (let i of SupplyManager.supplyList) {
+                        let isUserCartEmpty = this.userCart.findById(i.id);
+                        if (isUserCartEmpty != empty) {
+                            for (let i of this.userCart.itemList) {
+                                console.log('222')
+                                indexSupply = SupplyManager.findById(i.id);
+                                SupplyManager.supplyList[indexSupply].quantity = SupplyManager.supplyList[indexSupply].quantity + i.quantity;
+                            }
+                        }
+                    }
                     return this.logout.mainMenu;
             }
         }

@@ -41,7 +41,7 @@ export class AdminMenuSupplyManager {
                         inputId = readlineSync.question('Id: ');
                         isIdExist = SupplyManager.findById(inputId);
                         let index = isIdExist;
-                        let no = -1;
+                        no = -1;
                         if (isIdExist == no) {
                             inputName = readlineSync.question('Name: ');
                             inputPrice = +readlineSync.question('Price: ');
