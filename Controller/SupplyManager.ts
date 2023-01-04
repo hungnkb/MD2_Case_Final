@@ -22,6 +22,10 @@ export class SupplyManager {
         return SupplyManager.revenue;
     }
 
+    static calculateRevenue(total: number) {
+        SupplyManager.revenue = SupplyManager.revenue += total;
+    }
+
     static addItem(newItem: Supplies): void {
         SupplyManager.supplyList.push(newItem);
     }
@@ -30,7 +34,7 @@ export class SupplyManager {
         let index = this.findById(id)
         if (index != -1) {
             SupplyManager.supplyList[index] = updateItem;
-        } 
+        }
     }
 
     static editQuantity(id: string, quantity: number): void {
